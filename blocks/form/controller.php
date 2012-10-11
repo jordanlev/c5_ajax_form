@@ -82,7 +82,7 @@ class FormBlockController extends Concrete5_Controller_Block_Form {
 			//Add placeholder attributes
 			if ($this->enablePlaceholders) {
 				$search = 'id="Question';
-				$replace = "placeholder=\"{$question['question']}\" {$search}";
+				$replace = 'placeholder="' . $question['question'] . ($question['required'] ? ' *' : '') . '" ' . $search;
 				$question['input'] = str_replace($search, $replace, $question['input']);
 			}
 			
