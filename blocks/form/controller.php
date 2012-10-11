@@ -15,6 +15,7 @@ class FormBlockController extends Concrete5_Controller_Block_Form {
 			$bv->setBlockObject($this->getBlockObject());
 			$blockURL = $bv->getBlockURL();
 			$this->addFooterItem($html->javascript("{$blockURL}/jquery.placeholder.min.js", null, array('handle' => 'jquery.placeholder', 'version' => '2.0.7')));
+			$this->addFooterItem($html->script('$(document).ready(function() { $(".formblock input, .formblock textarea").placeholder(); });'));
 		}
 		
 		//C5 only includes jquery.form.js when user is logged in.
@@ -109,11 +110,6 @@ class FormBlockController extends Concrete5_Controller_Block_Form {
 		//Prep captcha
 		$surveyBlockInfo = $miniSurvey->getMiniSurveyBlockInfoByQuestionId($qsID, $bID);
 		$captcha = $surveyBlockInfo['displayCaptcha'] ? Loader::helper('validation/captcha') : false;
-
-		//Localized labels
-		$translatedCaptchaLabel = t('Please type the letters and numbers shown in the image.');
-		$translatedSubmitLabel = t('Submit');
-		$translatedProcessingLabel = t('Processing...');
 		
 		//Send data to the view
 		$this->set('formDomId', $formDomId);
@@ -126,9 +122,6 @@ class FormBlockController extends Concrete5_Controller_Block_Form {
 		$this->set('errors', $errors);
 		$this->set('questions', $questions);
 		$this->set('captcha', $captcha);
-		$this->set('translatedCaptchaLabel', $translatedCaptchaLabel);
-		$this->set('translatedSubmitLabel', $translatedSubmitLabel);
-		$this->set('translatedProcessingLabel', $translatedProcessingLabel);
 		$this->set('enablePlaceholders', $this->enablePlaceholders);
 	}
 	

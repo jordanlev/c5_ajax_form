@@ -121,7 +121,7 @@ if ($isAjax):
 
 		<?php if ($captcha): ?>
 			<div class="field field-captcha">
-				<label><?php echo $translatedCaptchaLabel; ?></label>
+				<label>Please type the letters and numbers shown in the image.</label>
 				<?php $captcha->display(); ?>
 				<?php $captcha->showInput(); ?>
 			</div>
@@ -129,11 +129,11 @@ if ($isAjax):
 
 	</div><!-- .fields -->
 
-	<input type="submit" name="Submit" class="submit" value="<?php echo $translatedSubmitLabel; ?>" />
+	<input type="submit" name="Submit" class="submit" value="Submit" />
 
 	<div class="indicator" style="display: none;">
 		<img src="<?php echo ASSETS_URL_IMAGES; ?>/throbber_white_16.gif" width="16" height="16" alt="" />
-		<span><?php echo $translatedProcessingLabel; ?></span>
+		<span>Processing...</span>
 	</div>
 
 	<input name="qsID" type="hidden" value="<?php echo $qsID; ?>" />
