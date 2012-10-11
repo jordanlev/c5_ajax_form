@@ -1,25 +1,23 @@
 /* keep this file here even if empty -- c5 always looks for it due to buggy override system, and you'll get a 404 if it doesn't exist! */
 
 .formblock .success {
-	background-color: #FAF6EA;
-	border: 1px solid green;
 	padding: 5px;
+	background-color: #CCFFCC;
+	border: 1px solid green;
 	font-weight: bold;
 }
 
 .formblock .errors {
+	padding: 5px;
+	background-color: #FFCCCC;
+	border: 1px solid red;
 	color: red;
-	white-space: nowrap;
 }
 
-.formblock .error {
-	margin: 3px 0 5px 5px;
-}
-
-/* hide form labels but ensure they can be read by screenreaders
- * (from html5boilerplate, and explained well at http://css-tricks.com/places-its-tempting-to-use-display-none-but-dont/
- */
 .formblock .visuallyhidden {
+	/* hide form labels but ensure they can be read by screenreaders
+	 * (from html5boilerplate, and explained well at http://css-tricks.com/places-its-tempting-to-use-display-none-but-dont/
+	 */
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
