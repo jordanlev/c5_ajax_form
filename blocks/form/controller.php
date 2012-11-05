@@ -23,9 +23,19 @@ class FormBlockController extends Concrete5_Controller_Block_Form {
 		// and only output it once.
 		$this->addFooterItem($html->javascript('jquery.form.js'));
 		
-		//DEV NOTE: We are intentionally *not* calling parent::on_page_view,
-		// because in Concrete5.6 the parent class adds jquery ui to the footer
-		// (js AND css!!), which makes less than zero sense.
+		//Include JQueryUI *if* the form includes a date or datetime field
+		//(this is an improvement over C5.6, which always includes JQUI even when not needed)
+		if ($this->viewRequiresJqueryUI()) {
+			$this->addHeaderItem($html->css('jquery.ui.css'));
+			$this->addFooterItem($html->javascript('jquery.ui.js'));
+		}
+	}
+	private function viewRequiresJqueryUI() {
+		$whereInputTypes = "inputType = 'date' OR inputType = 'datetime'";
+		$sql = "SELECT COUNT(*) FROM {$this->btQuestionsTablename} WHERE questionSetID = ? AND bID = ? AND ({$whereInputTypes})";
+		$vals = array(intval($this->questionSetId), intval($this->bID));
+		$count = Loader::db()->GetOne($sql, $vals);
+		return (bool)$count;
 	}
 	
 	public function view() {
