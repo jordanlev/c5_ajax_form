@@ -32,7 +32,9 @@ if ($isAjax):
 			},
 			'success': function(response) {
 				<?php echo $form_processing_varname; ?> = false;
-				if (response.success) {
+				if (response.redirect.length) {
+					window.location.replace(response.redirect); //see http://stackoverflow.com/a/506004/477513
+				} else if (response.success) {
 					$('#<?php echo $formDomId; ?>').clearForm();
 					<?php echo $template_onsuccess_funcname; ?>('#<?php echo $formDomId; ?>', response.message);
 				} else {

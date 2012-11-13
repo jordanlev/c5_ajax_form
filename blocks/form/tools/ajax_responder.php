@@ -12,6 +12,7 @@ defined('C5_EXECUTE') or die(_("Access Denied."));
 $success = false;
 $message = '';
 $errors = array();
+$redirectURL = '';
 
 $valt = Loader::helper('validation/token');
 if (!$valt->validate()) {
@@ -22,6 +23,15 @@ if (!$valt->validate()) {
 	$b = Block::GetById($_POST['bID']);
 	$bc = new FormBlockController($b);
 	$bc->noSubmitFormRedirect = true;
+	
+	//Handle redirect-on-success...
+	if ($bc->redirectCID > 0) {
+		$redirectPage = Page::getByID($bc->redirectCID);
+		if ($redirectPage->cID) {
+			$redirectURL = Loader::helper('navigation')->getLinkToCollection($redirectPage, true);
+		}
+	}
+	$bc->redirectCID = 0; //reset this in block controller, otherwise it will exit before returning the data we need!
 	
 	try {
 		$bc->action_submit_form();
@@ -41,6 +51,7 @@ if (!$valt->validate()) {
 	
 	$success = empty($errors);
 	$message = $success ? $bc->thankyouMsg : $bc->get('formResponse'); // 'formResponse' is error header msg
+	$redirectURL = $success ? $redirectURL : '';
 }
 
 //Send response
@@ -49,6 +60,7 @@ $jsonData = array(
 	'success' => $success,
 	'message' => $message,
 	'errors' => $errors,
+	'redirect' => $redirectURL,
 );
 echo $json->encode( $jsonData );
 
