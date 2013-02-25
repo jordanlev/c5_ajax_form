@@ -22,4 +22,4 @@ To enable "placeholder" functionality (so field labels appear inside the fields 
 variable to `true` near the top of the `controller.php` file.
 
 To enable google analytics events, set the `$enableGoogleEvents` variable to `true` near the top of the file.  The event
-uses form name as the label with the category "Forms" and action "Submitted".
+uses the form name as the label with the category "Forms" and action "Submitted".
