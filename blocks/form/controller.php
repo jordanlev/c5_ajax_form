@@ -6,7 +6,8 @@ class MiniSurvey extends Concrete5_Controller_Block_FormMinisurvey {}
 class FormBlockController extends Concrete5_Controller_Block_Form {
 	
 	public $enablePlaceholders = false;
-	
+	public $enableAnalyticsEvents = true;
+
 	public function on_page_view() {
 		$html = Loader::helper('html');
 		
@@ -120,9 +121,13 @@ class FormBlockController extends Concrete5_Controller_Block_Form {
 		//Prep captcha
 		$surveyBlockInfo = $miniSurvey->getMiniSurveyBlockInfoByQuestionId($qsID, $bID);
 		$captcha = $surveyBlockInfo['displayCaptcha'] ? Loader::helper('validation/captcha') : false;
-		
+
+        // Form name for analytics event tracking
+        $formName = $surveyBlockInfo['surveyName'];
+
 		//Send data to the view
 		$this->set('formDomId', $formDomId);
+		$this->set('formName', $formName);
 		$this->set('hasFileUpload', $hasFileUpload);
 		$this->set('qsID', $qsID);
 		$this->set('pURI', $pURI);
@@ -133,6 +138,8 @@ class FormBlockController extends Concrete5_Controller_Block_Form {
 		$this->set('questions', $questions);
 		$this->set('captcha', $captcha);
 		$this->set('enablePlaceholders', $this->enablePlaceholders);
+		$this->set('enableAnalyticsEvents', $this->enableAnalyticsEvents);
+
 	}
 	
 	
