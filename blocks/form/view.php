@@ -36,7 +36,9 @@ if ($isAjax):
 					window.location.replace(response.redirect); //see http://stackoverflow.com/a/506004/477513
 				} else if (response.success) {
                     <?php if ($enableAnalyticsEvents): ?>
-                        _gaq.push(['_trackEvent', 'Forms', 'Submitted', '<?php echo str_replace("'","\\'", $formName); ?>']);
+                        if ('undefined' !== typeof _gaq) {
+                            _gaq.push(['_trackEvent', 'Forms', 'Submitted', '<?php echo str_replace("'","\\'", $formName); ?>']);
+                        }
                     <?php endif ?>
 					$('#<?php echo $formDomId; ?>').clearForm();
 					<?php echo $template_onsuccess_funcname; ?>('#<?php echo $formDomId; ?>', response.message);
