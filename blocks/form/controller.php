@@ -133,6 +133,7 @@ class FormBlockController extends Concrete5_Controller_Block_Form {
 		$this->set('questions', $questions);
 		$this->set('captcha', $captcha);
 		$this->set('enablePlaceholders', $this->enablePlaceholders);
+		$this->set('formName', $surveyBlockInfo['surveyName']); //for GA event tracking
 	}
 	
 	

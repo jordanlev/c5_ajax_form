@@ -13,4 +13,13 @@ This is basically the same thing as the Ajax Form addon in the marketplace, but 
  4. Move the `form` folder to your site's top-level `blocks` directory (*not* `concrete/blocks`)
 
 That's it! Now any form blocks added to your site will automatically have ajax functionality (unless a custom template is chosen, or unless there are file upload fields in the form).
-To enable "placeholder" functionality (so field labels appear inside the fields themselves), set the `$enablePlaceholders` variable to `true` near the top of the `controller.php` file.
+
+### Placeholder Labels
+To enable "placeholder" functionality (so field labels appear inside the fields themselves), set the `$enablePlaceholders` variable to `true` near the top of `blocks/form/controller.php`.
+
+### Google Analytics Event Tracking
+If you're tracking site events with Google Analytics, you'll want to add some code like the following to `blocks/form/view.php`, directly under the `} else if (response.success) {` line:
+	
+	if ('undefined' !== typeof _gaq) {
+		_gaq.push(['_trackEvent', 'Forms', 'Submitted', '<?php echo addslashes($formName); ?>']);
+	}
