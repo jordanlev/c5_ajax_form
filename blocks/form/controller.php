@@ -18,11 +18,6 @@ class FormBlockController extends Concrete5_Controller_Block_Form {
 			$this->addFooterItem($html->script('$(document).ready(function() { $(".formblock input, .formblock textarea").placeholder(); });'));
 		}
 		
-		//C5 only includes jquery.form.js when user is logged in.
-		//This is safe to call even if C5 is including it, though, because it will catch the duplicate
-		// and only output it once.
-		$this->addFooterItem($html->javascript('jquery.form.js'));
-		
 		//Include JQueryUI *if* the form includes a date or datetime field
 		//(this is an improvement over C5.6, which always includes JQUI even when not needed)
 		if ($this->viewRequiresJqueryUI()) {
@@ -41,6 +36,11 @@ class FormBlockController extends Concrete5_Controller_Block_Form {
 	public function view() {
 		//Set up nice clean variables for the view to use.
 		//Note that we don't call parent::view(), because built-in form block controller doesn't have one(!!)
+		
+		//C5 only includes jquery.form.js when user is logged in.
+		//This is safe to call even if C5 is including it, though, because it will catch the duplicate
+		// and only output it once.
+		$this->addFooterItem($html->javascript('jquery.form.js'));
 		
 		$miniSurvey = new MiniSurvey();
 		$miniSurvey->frontEndMode = true;
