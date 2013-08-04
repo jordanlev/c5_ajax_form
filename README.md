@@ -5,14 +5,6 @@ Improves the built-in form block so it submits via ajax. Also uses a table-less 
 
 This is basically the same thing as the Ajax Form addon in the marketplace, but more efficient (only loads jquery.form.js on pages that have a form block -- not every page on the site like the marketplace addon does). It also adds the optional placeholder functionality.
 
-## PHP Errors/Warnings?
-Some users have reported getting the following error on pages that have a form block:
-`Warning: Invalid argument supplied for foreach() in /PATH/TO/YOUR/SITE/blocks/form/view.php on line 111`.
-This error is caused by the "Overrides Cache" (it gets confused if there was already a form block on the page and then you add this ajax form template to your site).
-To resolve the problem, temporarily disable the Overrides Cache (via Dashbard > System & Settings > Cache & Speed Settings), then visit / reload any pages on your site that have a form block on them, then re-enabled the overrides cache.
-_Or better yet, if the site is in development, you should just leave all caching disabled until you're ready to go live._
-
-
 ## Installation
 
  1. Click the "ZIP" button above
@@ -31,3 +23,10 @@ If you're tracking site events with Google Analytics, you'll want to add some co
 	if ('undefined' !== typeof _gaq) {
 		_gaq.push(['_trackEvent', 'Forms', 'Submitted', '<?php echo addslashes($formName); ?>']);
 	}
+
+### PHP Errors/Warnings?
+Some users have reported getting the following error on pages that have a form block:
+`Warning: Invalid argument supplied for foreach() in /PATH/TO/YOUR/SITE/blocks/form/view.php on line 111`.
+This error is caused by the "Overrides Cache" (it gets confused if there was already a form block on the page and then you add this ajax form template to your site).
+To resolve the problem, temporarily disable the Overrides Cache (via Dashbard > System & Settings > Cache & Speed Settings), then visit / reload any pages on your site that have a form block on them, then re-enabled the overrides cache.
+_Or better yet, if the site is in development, you should just leave all caching disabled until you're ready to go live._
