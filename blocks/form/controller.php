@@ -111,7 +111,8 @@ class FormBlockController extends Concrete5_Controller_Block_Form {
 		$thanksMsg = $this->thankyouMsg;
 
 		//Prep error message(s)
-		$errorHeader = $formResponse;
+		$errorHeader = $this->get('formResponse');
+		$errors = $this->get('errors');
 		$errors = is_array($errors) ? $errors : array();
 		if ($invalidIP) {
 			$errors[] = $invalidIP;
