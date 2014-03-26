@@ -3,11 +3,9 @@ Improves the built-in form block so it submits via ajax. Also uses a table-less 
 
 *REQUIRES CONCRETE 5.6 OR HIGHER!*
 
-This is basically the same thing as the Ajax Form addon in the marketplace, but more efficient (only loads jquery.form.js on pages that have a form block -- not every page on the site like the marketplace addon does). It also adds the optional placeholder functionality.
-
 ## Installation
 
- 1. Click the "ZIP" button above
+ 1. [Download the ZIP file](https://github.com/jordanlev/c5_ajax_form/archive/master.zip)
  2. Unzip the downloaded file
  3. Open the `blocks` folder 
  4. Move the `form` folder to your site's top-level `blocks` directory (*not* `concrete/blocks`)
