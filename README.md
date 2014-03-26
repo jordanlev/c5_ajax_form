@@ -15,6 +15,9 @@ That's it! Now any form blocks added to your site will automatically have ajax f
 ### Placeholder Labels
 To enable "placeholder" functionality (so field labels appear inside the fields themselves), set the `$enablePlaceholders` variable to `true` near the top of `blocks/form/controller.php`.
 
+### Spam Honeypot
+A basic "honeypot" method (e.g. http://stackoverflow.com/q/3622433/477513) is enabled by default to prevent spam submissions. You can disable this by setting the `$enableSpamHoneypot` variable to `false` near the top of `blocks/form/controller.php`.
+
 ### Google Analytics Event Tracking
 If you're tracking site events with Google Analytics, you'll want to add some code like the following to `blocks/form/view.php`, directly under the `} else if (response.success) {` line:
 	

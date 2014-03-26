@@ -123,12 +123,20 @@ if ($isAjax):
 
 		<?php if ($captcha): ?>
 			<div class="field field-captcha">
-				<label>Please type the letters and numbers shown in the image.</label>
+				<label><?php echo t('Please type the letters and numbers shown in the image.'); ?></label>
 				<?php $captcha->display(); ?>
 				<?php $captcha->showInput(); ?>
 			</div>
 		<?php endif; ?>
-
+		
+		<?php if ($enableSpamHoneypot): ?>
+			<div class="field field-text visuallyhidden">
+				<label for="message"><?php echo t('Leave this field blank'); ?></label>
+				<input type="text" name="message1" />
+			</div>
+			<input type="hidden" name="message2" value="1" />
+		<?php endif; ?>
+		
 	</div><!-- .fields -->
 
 	<input type="submit" name="Submit" class="submit" value="Submit" />
