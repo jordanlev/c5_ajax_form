@@ -11,6 +11,11 @@ class FormBlockController extends Concrete5_Controller_Block_Form {
 	public function on_page_view() {
 		$html = Loader::helper('html');
 		
+		//C5 only includes jquery.form.js when user is logged in.
+		//This is safe to call even if C5 is including it, though,
+		// because C5 will catch the duplicate and only output it once.
+		$this->addFooterItem($html->javascript('jquery.form.js'));
+		
 		if ($this->enablePlaceholders) {
 			$bv = new BlockView();
 			$bv->setBlockObject($this->getBlockObject());
